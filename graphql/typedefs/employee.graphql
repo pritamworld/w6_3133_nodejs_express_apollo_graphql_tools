@@ -1,0 +1,11 @@
+# Types
+type Employee {
+    id: ID!
+    firstname: String!
+    lastname: String!
+    email: String!
+    gender: String!
+    city: String!
+    designation: String!
+    salary: Float!
+}
