@@ -1,4 +1,3 @@
-
 # Create .env file with following varialbes
 - PORT=4000
 - MONGODB_URL= Your DB URL
