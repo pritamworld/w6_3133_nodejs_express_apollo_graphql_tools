@@ -1,5 +1,5 @@
 
-const employeeMutations = {
+exports.employeeMutations = {
     addEmployee: async (parent, args) => {
         console.log(args)
 
@@ -54,5 +54,3 @@ const employeeMutations = {
     return await Employee.findByIdAndDelete(args.id)
   }
 }
-
-export default employeeMutations

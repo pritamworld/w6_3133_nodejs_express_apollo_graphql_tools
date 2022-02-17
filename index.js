@@ -2,20 +2,10 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-
-//import typedefs and resolvers
-const TypeDefs = require('./schema')
-const Resolvers = require('./resolvers')
-
-//import ApolloServer
-const { ApolloServer } = require('apollo-server-express')
-
-//Store sensitive information to env variables
-const dotenv = require('dotenv');
-dotenv.config();
+const { mongo_database_url } = require('./config/environment');
 
 //mongoDB Atlas Connection String
-const mongodb_atlas_url = process.env.MONGODB_URL;
+const mongodb_atlas_url = mongo_database_url.url;
 
 //TODO - Replace you Connection String here
 mongoose.connect(mongodb_atlas_url, {
@@ -28,10 +18,7 @@ mongoose.connect(mongodb_atlas_url, {
 });
 
 //Define Apollo Server
-const server = new ApolloServer({
-  typeDefs: TypeDefs.typeDefs,
-  resolvers: Resolvers.resolvers
-})
+const graphqlServer = require('./graphql')
 
 //Define Express Server
 const app = express();
@@ -39,10 +26,10 @@ app.use(bodyParser.json());
 app.use('*', cors());
 
 //Add Express app as middleware to Apollo Server
-server.applyMiddleware({app})
+graphqlServer.applyMiddleware({app})
 
 //console.log(server)
 
 //Start listen 
 app.listen({ port: process.env.PORT }, () =>
-  console.log(`🚀 Server ready at http://localhost:${process.env.PORT}${server.graphqlPath}`));
+  console.log(`🚀 Server ready at http://localhost:${process.env.PORT}${graphqlServer.graphqlPath}`));

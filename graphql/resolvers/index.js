@@ -1,6 +1,6 @@
-import { employeeQueries, employeeMutations } from './employee'
+const { employeeQueries, employeeMutations } = require('./employee')
 
-const resolvers = {
+exports.resolvers = {
     Query: {
       ...employeeQueries
     },
@@ -8,5 +8,3 @@ const resolvers = {
       ...employeeMutations
     }
 }
-  
-  export default resolvers;

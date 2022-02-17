@@ -1,8 +1,8 @@
-import dotenv from 'dotenv';
+const dotenv = require('dotenv')
 
-dotenv.config();
+dotenv.config()
 
-const port = process.env.PORT;
+const port = process.env.PORT
 
 // You may use this as a boolean value for different situations
 const env = {
@@ -10,10 +10,10 @@ const env = {
   test: process.env.NODE_ENV === 'test',
   staging: process.env.NODE_ENV === 'staging',
   production: process.env.NODE_ENV === 'production',
-};
+}
 
-const mongo = {
+const mongo_database_url = {
   url: process.env.MONGO_URI,
-};
+}
 
-export { port, env, mongo };
+module.exports = { port, env, mongo_database_url }
