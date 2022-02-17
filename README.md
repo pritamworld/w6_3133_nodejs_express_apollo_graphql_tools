@@ -1,4 +1,5 @@
 # Create .env file with following varialbes
+- NODE_ENV=dev
 - PORT=4000
 - MONGODB_URL= Your DB URL
 
